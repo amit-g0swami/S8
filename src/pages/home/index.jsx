@@ -9,14 +9,14 @@ export default function Home() {
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  React.useEffect(
-    () => async () => {
-      setIsLoading(true);
-      const datas = await getData("sub_categories", setIsLoading);
-      setItems(datas);
-    },
-    []
-  );
+  // React.useEffect(
+  //   () => async () => {
+  //     setIsLoading(true);
+  //     const datas = await getData("sub_categories", setIsLoading);
+  //     setItems(datas);
+  //   },
+  //   []
+  // );
 
   return (
     <>
