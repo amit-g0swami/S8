@@ -2,21 +2,33 @@ import React from "react";
 import {FiSearch} from "react-icons/fi";
 import TrendingView from "../../components/common/Trending";
 import CategoryView from "../../components/common/Category";
-import {getData} from "../../apis";
+import {getData, getTrendingData} from "../../apis";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setData, setIsLoading} from "../../context/trending";
 
 export default function Home() {
   const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const dispatch = useDispatch();
 
-  // React.useEffect(
-  //   () => async () => {
-  //     setIsLoading(true);
-  //     const datas = await getData("sub_categories", setIsLoading);
-  //     setItems(datas);
-  //   },
-  //   []
-  // );
+  React.useEffect(
+    () => async () => {
+      // setIsLoading(true);
+      const datas = await getData("sub_categories", setIsLoading);
+      setItems(datas);
+    },
+    []
+  );
+
+  React.useEffect(
+    () => async () => {
+      dispatch(setIsLoading(true));
+      const data = await getTrendingData("trending");
+      dispatch(setData(data));
+      dispatch(setIsLoading(false));
+    },
+    []
+  );
 
   return (
     <>

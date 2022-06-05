@@ -24,12 +24,11 @@ export const getTrendingData = async(base, loader = (bool) => {}) => {
     };
     return await axios(config)
         .then((res) => {
-            return shuffle(res.data).slice(0, 4);
+            return res.data;
         })
         .catch(function(error) {
             console.log(error);
-        })
-        .finally(() => loader(false));
+        });
 };
 
 export const loginUser = async(data) => {

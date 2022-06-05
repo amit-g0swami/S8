@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const categorySlice = createSlice({
-    name: "category",
+export const trendingSlice = createSlice({
+    name: "trending",
     initialState: {
-        category: [],
+        data: [],
         isLoading: false,
     },
     reducers: {
-        setCategory: (state, action) => {
-            state.category = action.payload;
+        setData: (state, action) => {
+            state.data = action.payload;
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload;
@@ -16,4 +16,4 @@ export const categorySlice = createSlice({
     },
 });
 
-export const { setCategory } = categorySlice.actions;
+export const { setData, setIsLoading } = trendingSlice.actions;
