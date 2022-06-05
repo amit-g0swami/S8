@@ -8,7 +8,7 @@ const WalletPage = () => {
         <div className="flex h-72 p-3 justify-center items-center w-full">
           <img
             style={{width: "25rem"}}
-            src={require("../assets/balance.png")}
+            src={require("../../assets/balance.png")}
           />
         </div>
         <div className="flex p-4 justify-between w-full overflow-x-scroll">

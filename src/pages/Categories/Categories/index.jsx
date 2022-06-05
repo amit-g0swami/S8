@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import React from "react";
-import {BASE_URL} from "../base";
+import {BASE_URL} from "../../../base";
 import MainCategory from "./MainCategory";
 import SubCategory from "./SubCategory";
 
@@ -36,7 +36,7 @@ const Category = () => {
   };
 
   return (
-    <div className="flex w-full lg:w-7/12 h-3/5 flex-col mt-24">
+    <div className="flex w-full flex-col mt-24">
       <MainCategory
         fetchSubCategories={loadSubCategories}
         categories={categories}

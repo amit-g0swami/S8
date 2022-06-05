@@ -1,5 +1,5 @@
 import React from "react";
-import {BASE_URL} from "../../base";
+import {BASE_URL} from "../../../base";
 import axios from "axios";
 
 const Location = ({setSelectedAddress, selectedAddress}) => {

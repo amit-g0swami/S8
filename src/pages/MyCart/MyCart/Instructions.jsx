@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {AiFillCloseCircle} from "react-icons/ai";
-import {BASE_URL} from "../../base";
+import {BASE_URL} from "../../../base";
 // import {BASE_URL} from "../../base";
 import {useSnackbar} from "notistack";
 

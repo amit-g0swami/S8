@@ -2,7 +2,7 @@ import React from "react";
 import Instructions from "../../MyCart/MyCart/Instructions";
 import Bill from "../../MyCart/MyCart/Bill";
 import axios from "axios";
-import {BASE_URL} from "../base";
+import {BASE_URL} from "../../../base";
 import {useNavigate} from "react-router-dom";
 
 const Cart = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {BASE_URL} from "../base";
+import {BASE_URL} from "../../../base";
 import axios from "axios";
 import {useSnackbar} from "notistack";
 
@@ -99,10 +99,10 @@ const CarrierPage = () => {
       <div class="w-24 h-24 border-l-2 border-gray-900 rounded-full animate-spin"></div>
     </div>
   ) : (
-    <div className="flex mt-10 flex-col w-3/4 h-full">
+    <div className="flex mt-10 flex-col w-full h-full">
       <div className="flex flex-1 border-b-2 border-[#FCB512] flex-col my-10 w-full">
         <div className="flex font-bold p-4 pl-5 text-lg">Carrier</div>
-        <div className="flex overflow-x-auto ">
+        <div className="flex overflow-x-scroll overflow-y-hidden">
           {subCategory.map((item) => (
             <div
               key={item.category + item.sid}

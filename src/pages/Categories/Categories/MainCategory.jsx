@@ -15,7 +15,7 @@ const MainCategory = (props) => {
         <AiOutlineLeft onClick={() => navigate(-1)} className="mr-3" />
         Categories
       </div>
-      <div className="flex w-full justify-center items-center py-3">
+      <div className="flex w-full overflow-x-scroll items-center py-3">
         {props.categories.map((category) => (
           <div
             key={category.name + category.cid}

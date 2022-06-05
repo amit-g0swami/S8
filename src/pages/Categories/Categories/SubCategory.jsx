@@ -8,7 +8,7 @@ const SubCategory = (props) => {
         ? null
         : props.subCategories.map((sub) => (
             <Link
-              to={`/products/${sub.name}/${sub.scid}`}
+              to={`/product/${sub.name}/${sub.scid}`}
               key={sub.name + sub.scid}
               className="flex ">
               <div className="flex font-worksans font-medium text-lg p-6 pl-8"></div>

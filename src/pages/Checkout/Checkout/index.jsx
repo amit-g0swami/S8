@@ -2,7 +2,7 @@ import React from "react";
 import Location from "./location";
 import moment from "moment";
 import axios from "axios";
-import {BASE_URL} from "../base";
+import {BASE_URL} from "../../../base";
 import {useSnackbar} from "notistack";
 import {useNavigate} from "react-router-dom";
 import useRazorpay from "react-razorpay";

@@ -1,8 +1,8 @@
 import React from "react";
 import {MdArrowForwardIos} from "react-icons/md";
-import memo from "../../assets/memo.png";
-import coupon from "../../assets/coupon.png";
-import wallet from "../../assets/wallet.png";
+import memo from "../../../assets/memo.png";
+import coupon from "../../../assets/coupon.png";
+import wallet from "../../../assets/wallet.png";
 import {Link} from "react-router-dom";
 
 const Information = () => {

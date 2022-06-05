@@ -2,7 +2,7 @@ import React from "react";
 import Information from "../../pages/Profile/Profile/Information";
 import Menu from "../../pages/Profile/Profile/Menu";
 import axios from "axios";
-import {BASE_URL} from "../base";
+import {BASE_URL} from "../../base";
 import {useNavigate} from "react-router-dom";
 
 const Profile = () => {

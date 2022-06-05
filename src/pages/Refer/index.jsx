@@ -1,12 +1,9 @@
 import React from "react";
-import HeadBanner from "../../pages/Refer/Refer/HeadBanner";
-import CouponCode from "../../pages/Refer/Refer/CouponCode";
 import {useNavigate} from "react-router-dom";
 import {BASE_URL} from "../../base";
 import {useSnackbar} from "notistack";
 import axios from "axios";
 import {MdContentCopy} from "react-icons/md";
-import FAQ from "../../pages/Refer/Refer/FAQ";
 
 const Referpage = () => {
   const [user, setUser] = React.useState({});
@@ -113,7 +110,6 @@ const Referpage = () => {
           </button>
         </div>
       </div>
-      <FAQ />
     </div>
   );
 };

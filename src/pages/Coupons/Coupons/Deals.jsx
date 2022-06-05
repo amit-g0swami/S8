@@ -1,7 +1,7 @@
 import React from "react";
 import {MdContentCopy} from "react-icons/md";
 import axios from "axios";
-import {BASE_URL} from "../../base";
+import {BASE_URL} from "../../../base";
 
 const Deals = () => {
   const [coupon, setCoupon] = React.useState([]);

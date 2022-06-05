@@ -1,6 +1,4 @@
 import React from "react";
-import ObjectDetail from "../../pages/PriceInfo/PriceInfo/ObjectDetail";
-import Customer from "../../pages/PriceInfo/PriceInfo/Customer";
 
 const PriceDetails = () => {
   return (
