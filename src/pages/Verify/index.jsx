@@ -1,81 +1,78 @@
 import React from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {BASE_URL} from "../../base";
+import { useSelector, useDispatch } from "react-redux";
+import { BASE_URL } from "../../base";
 import {
   setOtp,
   setType,
   setIsAuthenticated,
   setToken,
 } from "../../context/login";
-import {useSnackbar} from "notistack";
-import {useNavigate} from "react-router-dom";
+import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const VerifyPage = () => {
-  const {result, otp, ph_number, type, name} = useSelector(
+  const { result, otp, ph_number, type, name } = useSelector(
     (state) => state.login
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {enqueueSnackbar} = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const ValidateOtp = () => {
     console.log(result, otp);
     if (otp === null || result === null) return;
-    result
-      .confirm(otp)
-      .then(async (result) => {
-        console.log(result);
-        // success
-        if (type === "register") {
-          await axios
-            .post(BASE_URL + "/auth/register", {
-              ph_number: "+91" + ph_number,
-              password: result.user.multiFactor.user.uid,
-              name: name,
-              username: name.replace(" ", "_") + String(ph_number).slice(0, 5),
-            })
-            .then((res) => {
-              if (res.data.success) {
-                localStorage.setItem("user", JSON.stringify(res.data.data));
-                localStorage.setItem("token", res.data.token);
-                setIsAuthenticated(true);
-                setToken(res.data.token);
-                enqueueSnackbar("Registered Successfully!", {
-                  variant: "success",
-                });
-                navigate("/");
-                dispatch(setType("login"));
-              } else {
-                const errors = res.data.error;
-                let keys = Object(errors).keys();
-                console.log(keys);
-                for (let key of keys) {
-                  enqueueSnackbar(errors[key][0], {variant: "error"});
-                }
+    result.confirm(otp).then(async (result) => {
+      // success
+      if (type == "register") {
+        console.log("hello")
+        await axios
+          .post(BASE_URL + "/auth/register", {
+            ph_number: "+91" + ph_number,
+            password: result.user.multiFactor.user.uid,
+            name: name,
+            username: name.replace(" ", "_") + String(ph_number).slice(0, 5),
+          }).then((res) => {
+            if (res.data.success) {
+              localStorage.setItem("user", JSON.stringify(res.data.data));
+              localStorage.setItem("token", res.data.token);
+              setIsAuthenticated(true);
+              setToken(res.data.token);
+              enqueueSnackbar("Registered Successfully!", {
+                variant: "success",
+              });
+              navigate("/");
+              dispatch(setType("login"));
+              console.log("Registered Successfully!");
+            } else {
+              const errors = res.data.error;
+              let keys = Object(errors).keys();
+              console.log(keys);
+              for (let key of keys) {
+                enqueueSnackbar(errors[key][0], { variant: "error" });
               }
-            });
-        } else {
-          await axios
-            .post(BASE_URL + "/auth/user/login", {
-              ph_number: "+91" + ph_number,
-              password: result.user.multiFactor.user.uid,
-            })
-            .then((res) => {
-              if (res.data.success) {
-                localStorage.setItem("user", JSON.stringify(res.data.user));
-                localStorage.setItem("token", res.data.token);
-                setIsAuthenticated(true);
-                setToken(res.data.token);
-                enqueueSnackbar("Login is successful", {variant: "success"});
-                navigate("/");
-              } else {
-                enqueueSnackbar(res.data.error, {variant: "error"});
-              }
-            });
-        }
-      })
+            }
+          });
+      } else {
+        await axios
+          .post(BASE_URL + "/auth/user/login", {
+            ph_number: "+91" + ph_number,
+            password: result.user.multiFactor.user.uid,
+          }).then((res) => {
+            if (res.data.success) {
+              localStorage.setItem("user", JSON.stringify(res.data.user));
+              localStorage.setItem("token", res.data.token);
+              setIsAuthenticated(true);
+              setToken(res.data.token);
+              enqueueSnackbar("Login is successful", { variant: "success" });
+              navigate("/");
+            } else {
+              enqueueSnackbar(res.data.error, { variant: "error" });
+            }
+          });
+      }
+    })
       .catch((err) => {
-        enqueueSnackbar("Wrong OTP", {variant: "error"});
+        enqueueSnackbar("Wrong OTP", { variant: "error" });
       });
   };
 

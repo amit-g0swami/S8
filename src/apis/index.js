@@ -2,22 +2,21 @@ import axios from "axios";
 import { shuffle } from "../functions/shuffle";
 import { BASE_URL } from "../base";
 
-export const getData = async(base, loader = (bool) => {}, noOfData = 4) => {
+export const getData = async (base) => {
     var config = {
         method: "get",
         url: BASE_URL + "/rest/" + base,
     };
     return await axios(config)
         .then((res) => {
-            return shuffle(res.data.results).slice(0, noOfData);
+            return shuffle(res.data.results)
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log(error);
         })
-        .finally(() => loader(false));
 };
 
-export const getTrendingData = async(base, loader = (bool) => {}) => {
+export const getTrendingData = async (base, loader = (bool) => { }) => {
     var config = {
         method: "get",
         url: BASE_URL + "/rest/" + base,
@@ -26,18 +25,18 @@ export const getTrendingData = async(base, loader = (bool) => {}) => {
         .then((res) => {
             return res.data;
         })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log(error);
         });
 };
 
-export const loginUser = async(data) => {
+export const loginUser = async (data) => {
     return await axios
         .post(BASE_URL + "/auth/login", data)
         .then((res) => res.data);
 };
 
-export const addToCart = async(params, enqueueSnackbar) => {
+export const addToCart = async (params, enqueueSnackbar) => {
     const token = localStorage.getItem("token");
     await axios
         .post(
@@ -52,7 +51,7 @@ export const addToCart = async(params, enqueueSnackbar) => {
         });
 };
 
-export const remove_from_cart = async(sid, enqueueSnackbar) => {
+export const remove_from_cart = async (sid, enqueueSnackbar) => {
     const token = localStorage.getItem("token");
     await axios
         .delete(BASE_URL + "/rest/cart?sid=" + sid, {

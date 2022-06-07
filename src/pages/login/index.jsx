@@ -1,9 +1,9 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {setType, setResult, setPhNumber} from "../../context/login";
-import {GrFormClose} from "react-icons/gr";
-import {firebase, auth} from "../../firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setType, setResult, setPhNumber } from "../../context/login";
+import { GrFormClose } from "react-icons/gr";
+import { firebase, auth } from "../../firebase";
 
 const LoginPage = () => {
   const ph_number = useSelector((state) => state.login.ph_number);
@@ -28,6 +28,11 @@ const LoginPage = () => {
         window.location.reload();
       });
   };
+  const register = () => {
+    dispatch(setType("register"));
+    signInWithPhoneNumber();
+  };
+
   return (
     <div className="flex w-full h-full font-worksans flex-col">
       <div className="flex mt-16 items-center flex-col w-full">
@@ -75,7 +80,7 @@ const LoginPage = () => {
           <div className="flex w-80 h-12 items-center my-10 justify-center border-b">
             OR NEW HERE?
           </div>
-          <div className="flex w-96 mb-5 h-10 items-center justify-center rounded-lg border-2 border-[#FCB512] text-[#FCB512] font-medium text-md">
+          <div className="flex w-96 mb-5 h-10 items-center justify-center rounded-lg border-2 border-[#FCB512] text-[#FCB512] font-medium text-md" name="register" onClick={register} style={{ cursor: 'pointer' }}>
             Register
           </div>
         </div>

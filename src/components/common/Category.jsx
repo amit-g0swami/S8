@@ -1,31 +1,53 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import {getData} from "../../apis";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { getData } from "../../apis";
 import Loader from "./Loader";
 
-const CategoryView = ({name, route}) => {
-  const [items, setItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+const CategoryView = ({ name, route }) => {
+  const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  React.useEffect(
-    () => async () => {
-      setIsLoading(true);
-      const datas = await getData(route, setIsLoading, 6);
-      let mainData = [];
-      let breakedData = [];
-      if (datas) {
-        for (let index = 0; index < datas.length; index++) {
-          breakedData.push(datas[index]);
-          if (breakedData.length === 2) {
-            mainData.push(breakedData);
-            breakedData = [];
+  // React.useEffect(
+  //   () => async () => {
+  //     setIsLoading(true);
+  //     const datas = await getData(route, setIsLoading, 6);
+  //     let mainData = [];
+  //     let breakedData = [];
+  //     if (datas) {
+  //       for (let index = 0; index < datas.length; index++) {
+  //         breakedData.push(datas[index]);
+  //         if (breakedData.length === 2) {
+  //           mainData.push(breakedData);
+  //           breakedData = [];
+  //         }
+  //       }
+  //       setItems(mainData);
+  //     }
+  //   },
+  //   []
+  // );
+  useEffect(() => {
+    const datas = async () => {
+      try {
+        const datas = await getData(route);
+        let mainData = [];
+        let breakedData = [];
+        if (datas) {
+          for (let index = 0; index < datas.length; index++) {
+            breakedData.push(datas[index]);
+            if (breakedData.length === 2) {
+              mainData.push(breakedData);
+              breakedData = [];
+            }
           }
+          setItems(mainData);
         }
-        setItems(mainData);
+      } catch (err) {
+        console.log(err)
       }
-    },
-    []
-  );
+    }
+    datas();
+  }, []);
 
   return (
     <div className="flex font-worksans flex-col w-full px-6 sm:px-10 lg:px-16 lg:mb-20 mb-10 mt-10 sm:mt-24">
@@ -37,7 +59,7 @@ const CategoryView = ({name, route}) => {
       {isLoading ? (
         <Loader height={400} />
       ) : (
-        <div className="flex flex-1 flex-col lg:flex-row py-5 pb-7 mb-2 h-full rounded-lg items-center w-full">
+        <div className="flex flex-1 flex-col lg:flex-row py-5 pb-7 mb-2 h-full rounded-lg items-center w-full" style={{ overflowY: 'hidden' }}>
           {items?.map((item) => (
             <div className="flex flex-1 flex-row h-full w-full">
               {item?.map((data) => (

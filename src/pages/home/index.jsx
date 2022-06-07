@@ -1,34 +1,51 @@
-import React from "react";
-import {FiSearch} from "react-icons/fi";
+import React, { useEffect, useState } from "react";
+import { FiSearch } from "react-icons/fi";
 import TrendingView from "../../components/common/Trending";
 import CategoryView from "../../components/common/Category";
-import {getData, getTrendingData} from "../../apis";
-import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setData, setIsLoading} from "../../context/trending";
+import { getData, getTrendingData } from "../../apis";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setData, setIsLoading } from "../../context/trending";
 
 export default function Home() {
-  const [items, setItems] = React.useState([]);
+  const [items, setItems] = useState([]);
   const dispatch = useDispatch();
 
-  React.useEffect(
-    () => async () => {
-      // setIsLoading(true);
-      const datas = await getData("sub_categories", setIsLoading);
+  // React.useEffect(
+  //   () => async () => {
+  //     // setIsLoading(true);
+  //     const datas = await getData("sub_categories", setIsLoading);
+  //     setItems(datas);
+  //   },
+  //   []
+  // );
+  useEffect(() => {
+    const datas = async () => {
+      await getData("sub_categories", setIsLoading);
       setItems(datas);
-    },
-    []
-  );
+    }
+    datas();
+  }, [])
 
-  React.useEffect(
-    () => async () => {
+
+  // React.useEffect(
+  //   () => async () => {
+  //     dispatch(setIsLoading(true));
+  //     const data = await getTrendingData("trending");
+  //     dispatch(setData(data));
+  //     dispatch(setIsLoading(false));
+  //   },
+  //   []
+  // );
+  useEffect(() => {
+    const data = async () => {
       dispatch(setIsLoading(true));
       const data = await getTrendingData("trending");
       dispatch(setData(data));
       dispatch(setIsLoading(false));
-    },
-    []
-  );
+    }
+    data();
+  }, [])
 
   return (
     <>
@@ -69,17 +86,17 @@ export default function Home() {
           </div>
           <div className="flex flex-wrap">
             <div className="flex  p-2 text-orange-600 overflow-x-auto">
-              Popular
+              {/* Popular */}
             </div>
-            <div className="flex mx-2  flex-wrap">
+            {/* <div className="flex mx-2  flex-wrap">
               {items?.map((item) => (
                 <Link
-                  to={`/product/${item.name}/${item.scid}`}
+                  to={`/product/${item?.name}/${item?.scid}`}
                   className="flex mr-1 truncate my-1 h-10 items-center bg-white px-4 justify-center text-gray-400 rounded-lg">
-                  {item.name}
+                  {item?.name}
                 </Link>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

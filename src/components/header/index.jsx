@@ -1,17 +1,17 @@
 import React from "react";
 import Logo from "../../assets/logo.png";
-import {AiOutlineBars} from "react-icons/ai";
-import {FaTimes} from "react-icons/fa";
-import {CgProfile} from "react-icons/cg";
-import {Link} from "react-router-dom";
-import {BASE_URL} from "../../base";
+import { AiOutlineBars } from "react-icons/ai";
+import { FaTimes } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { Link } from "react-router-dom";
+import { BASE_URL } from "../../base";
 import axios from "axios";
 
 export const navigation = [
-  {name: "Home", link: ""},
-  {name: "Category", link: "/category"},
-  {name: "Carrier", link: "/carrier"},
-  {name: "Cart", link: "/cart"},
+  { name: "Home", link: "" },
+  { name: "Category", link: "/category" },
+  { name: "Carrier", link: "/carrier" },
+  { name: "Cart", link: "/cart" },
 ];
 
 export default function Navigation() {
